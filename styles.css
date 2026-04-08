@@ -1,3 +1,20 @@
+/* =========================================
+   THEME VARIABLES
+   Edit these to change the entire color scheme
+   and background image
+   ========================================= */
+:root {
+    --primary-color: #667eea;       /* Main accent color */
+    --primary-hover: #5a67d8;       /* Darker shade for hover states */
+    --bg-overlay: rgba(45, 55, 72, 0.95); /* Card background */
+    --bg-image: url('./assets/background.jpg'); /* Your background image */
+    --text-main: #ffffff;
+    --text-muted: #a0aec0;
+    --link-bg: rgba(255, 255, 255, 0.05);
+    --link-border: rgba(255, 255, 255, 0.1);
+    --link-hover-bg: rgba(102, 126, 234, 0.2);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,25 +23,32 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: url(/assets/VRChat_2026-02-02_20-24-48.605_1920x1080.png);
+    
+    /* Background Setup */
+    background-color: #1a202c; /* Fallback color if image fails */
+    background-image: var(--bg-image);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
+    color: var(--text-main);
 }
 
 .container {
-    background: rgba(45, 55, 72, 0.95);
+    background: var(--bg-overlay);
     border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     max-width: 400px;
     width: 100%;
     padding: 40px 30px;
     text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .profile-section {
@@ -37,7 +61,8 @@ body {
     margin: 0 auto 20px;
     border-radius: 50%;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 3px solid var(--primary-color);
 }
 
 .profile-image img {
@@ -49,13 +74,13 @@ body {
 .profile-name {
     font-size: 28px;
     font-weight: 600;
-    color: #fff;
+    color: var(--text-main);
     margin-bottom: 10px;
 }
 
 .profile-bio {
     font-size: 16px;
-    color: #fff;
+    color: var(--text-muted);
     line-height: 1.5;
 }
 
@@ -76,82 +101,160 @@ body {
     display: flex;
     align-items: center;
     padding: 15px 20px;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--link-bg);
     border-radius: 12px;
     text-decoration: none;
-    color: #e2e8f0;
+    color: var(--text-main);
     font-weight: 500;
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--link-border);
     backdrop-filter: blur(10px);
+    cursor: pointer;
 }
 
 .social-link:hover {
-    background: rgba(102, 126, 234, 0.2);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
-    border-color: #667eea;
+    background: var(--link-hover-bg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-color: var(--primary-color);
     color: #fff;
+    transform: translateY(-2px);
 }
 
 .social-arrow {
-    color: #667eea;
+    color: var(--primary-color);
     opacity: 0.7;
+    transition: transform 0.3s ease;
+}
+
+.social-link:hover .social-arrow {
+    transform: translateX(4px);
+    opacity: 1;
 }
 
 .social-name {
     flex: 1;
     text-align: left;
-}
-
-.error-code {
-    font-size: 96px;
-    font-weight: 600;
-    color: #667eea;
-    margin-bottom: 20px;
-    text-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-}
-.error-title {
-    font-size: 24px;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 10px;
-}
-.error-message {
-    font-size: 16px;
-    color: #e2e8f0;
-    line-height: 1.5;
-    margin-bottom: 30px;
-}
-.redirect-info {
-    font-size: 14px;
-    color: #a0aec0;
-    margin-bottom: 20px;
-}
-.home-button {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 10px;
-    padding: 15px 30px;
-    background: rgba(102, 126, 234, 0.2);
-    border: 1px solid #667eea;
-    border-radius: 12px;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-.home-button:hover {
-    background: rgba(102, 126, 234, 0.3);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
-@media (max-width: 480px) {
-    .error-code {
-        font-size: 72px;
-    }
-    .error-title {
-        font-size: 20px;
-    }
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: #2d3748;
+    border-radius: 16px;
+    padding: 30px;
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-overlay.active .modal {
+    transform: scale(1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h3 {
+    color: var(--text-main);
+    font-size: 20px;
+    margin: 0;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 28px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: var(--text-main);
+}
+
+.modal-body {
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.modal-body p {
+    margin-bottom: 15px;
+}
+
+.modal-body strong {
+    color: var(--text-main);
+}
+
+.modal-body code {
+    display: block;
+    background: rgba(102, 126, 234, 0.15);
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    color: var(--primary-color);
+    word-break: break-all;
+    margin: 15px 0;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    text-align: center;
+}
+
+.modal-note {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.modal-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--primary-color);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s ease;
+}
+
+.modal-btn:hover {
+    background: var(--primary-hover);
 }
 
 @media (max-width: 480px) {
@@ -165,5 +268,9 @@ body {
     
     .profile-bio {
         font-size: 14px;
+    }
+    
+    .modal {
+        padding: 20px;
     }
 }
