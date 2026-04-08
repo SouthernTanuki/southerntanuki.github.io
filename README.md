@@ -2,7 +2,7 @@
 
 > The enigma of the internet
 
-This is a basic link in bio page that I'm working on so my domain had something to point to and to give a place for my offical socials so its not a guessing game.
+This is a basic link-in-bio page that I'm working on so my domain has something to point to and to give a place for my official socials so it's not a guessing game.
 
 ## filez
 ```
