@@ -1,0 +1,17 @@
+User-agent: *
+Disallow: /
+Disallow: /404
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: upptime-bot
+Allow: /
+
+Sitemap: https://southerntanuki.com/sitemap.xml
